@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { MovieProvider } from './context/MovieContext';
+import { ThemeContext } from './context/ThemeContext';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import FavoritesPage from './pages/FavoritesPage';
+import MovieDetails from './components/MovieDetails';
 
-function App() {
+const AppWrapper = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <MovieProvider>
+        <App />
+      </MovieProvider>
+    </ThemeProvider>
   );
-}
+};
 
-export default App;
+const App = () => {
+  const { darkMode } = useContext(ThemeContext);
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+    },
+  });
+
+  return (
+    <Router>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+        </Routes>
+        <MovieDetails />
+      </ThemeProvider>
+    </Router>
+  );
+};
+
+export default AppWrapper;
