@@ -3,25 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { MovieProvider } from './context/MovieContext';
-import { ThemeContext } from './context/ThemeContext';
+import { ThemeProvider as CustomThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import FavoritesPage from './pages/FavoritesPage';
 import MovieDetails from './components/MovieDetails';
 
-const AppWrapper = () => {
-  return (
-    <ThemeProvider>
-      <MovieProvider>
-        <App />
-      </MovieProvider>
-    </ThemeProvider>
-  );
-};
-
 const App = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode } = useContext(CustomThemeProvider);
 
   const theme = createTheme({
     palette: {
@@ -42,6 +32,16 @@ const App = () => {
         <MovieDetails />
       </ThemeProvider>
     </Router>
+  );
+};
+
+const AppWrapper = () => {
+  return (
+    <CustomThemeProvider>
+      <MovieProvider>
+        <App />
+      </MovieProvider>
+    </CustomThemeProvider>
   );
 };
 
