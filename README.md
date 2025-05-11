@@ -69,3 +69,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 "# Movie-App" 
+
+
+...............................................
+Features
+User authentication (login/logout)
+
+Browse trending movies
+
+Search for movies
+
+View movie details
+
+Add movies to favorites
+
+Light/dark mode toggle
+
+Responsive design
