@@ -9,10 +9,8 @@ const Home = () => {
   useEffect(() => {
     const lastSearch = localStorage.getItem('lastSearch');
     if (lastSearch && !movies.length) {
-      // Your logic to re-trigger a search or restore last search results
-      // Example (if you have a searchMovies method): searchMovies(lastSearch);
     }
-  }, [movies.length]); // ✅ added movies.length to the dependency array
+  }, [movies.length]); 
 
   if (error) {
     return (
