@@ -3,15 +3,14 @@ import {
   AppBar, 
   Toolbar, 
   Typography, 
-  Button, 
   TextField, 
   InputAdornment, 
   IconButton,
   Box
 } from '@mui/material';
 import { MovieContext } from '../context/MovieContext';
-import { ThemeContext } from '../context/ThemeContext';
-import { AuthContext } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
 import SearchIcon from '@mui/icons-material/Search';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -19,8 +18,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 const Navbar = () => {
   const { search } = useContext(MovieContext);
-  const { darkMode, toggleTheme } = useContext(ThemeContext);
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { darkMode, toggleTheme } = useTheme();
+  const { isAuthenticated, logout } = useAuth();
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const handleSearch = (e) => {
